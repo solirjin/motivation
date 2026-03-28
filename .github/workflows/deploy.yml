@@ -30,6 +30,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Generate app icons
+        run: |
+          npm install --no-save sharp
+          node scripts/generate-icons.mjs
+
       - name: Download author images
         run: node scripts/download-images.mjs
 
