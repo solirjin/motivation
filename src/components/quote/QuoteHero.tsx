@@ -13,16 +13,29 @@ interface QuoteHeroProps {
 }
 
 export function QuoteHero({ quote, onRefresh, dateLabel }: QuoteHeroProps) {
+  // `displayed` is what's actually rendered — updated only after fade-out
+  const [displayed, setDisplayed] = useState<Quote>(quote);
   const [visible, setVisible] = useState(false);
   const [bgError, setBgError] = useState(false);
-  const imageUrl = getAuthorImage(quote.authorSlug);
 
   useEffect(() => {
+    // 1. Fade out everything
     setVisible(false);
-    setBgError(false);
-    const t = setTimeout(() => setVisible(true), 50);
+
+    // 2. After fade-out completes, swap content + fade in
+    const t = setTimeout(() => {
+      setDisplayed(quote);
+      setBgError(false);
+      // Small tick so React paints with new src before fading in
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => setVisible(true));
+      });
+    }, 400); // matches fade-out duration below
+
     return () => clearTimeout(t);
-  }, [quote.id]);
+  }, [quote.id]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const imageUrl = getAuthorImage(displayed.authorSlug);
 
   return (
     <div
@@ -30,11 +43,14 @@ export function QuoteHero({ quote, onRefresh, dateLabel }: QuoteHeroProps) {
       onClick={onRefresh}
       title="Nhấn để đổi câu"
     >
-      {/* Author background image */}
+      {/* Author background image — fades with content */}
       {imageUrl && !bgError && (
         <div
-          className="absolute inset-0 transition-opacity duration-1000"
-          style={{ opacity: visible ? 1 : 0 }}
+          className="absolute inset-0"
+          style={{
+            opacity: visible ? 1 : 0,
+            transition: "opacity 600ms ease",
+          }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -50,57 +66,55 @@ export function QuoteHero({ quote, onRefresh, dateLabel }: QuoteHeroProps) {
         </div>
       )}
 
-      {/* Content */}
-      <div className="relative z-10 flex flex-col items-center gap-3 w-full max-w-2xl">
+      {/* Content — fades together with background */}
+      <div
+        className="relative z-10 flex flex-col items-center gap-3 w-full max-w-2xl"
+        style={{
+          opacity: visible ? 1 : 0,
+          transform: visible ? "translateY(0)" : "translateY(12px)",
+          transition: "opacity 600ms ease, transform 600ms ease",
+        }}
+      >
         {/* Date */}
-        <p
-          className={`text-white/40 text-xs font-sans tracking-widest uppercase transition-opacity duration-500 ${visible ? "opacity-100" : "opacity-0"}`}
-        >
+        <p className="text-white/40 text-xs font-sans tracking-widest uppercase">
           {dateLabel}
         </p>
 
         {/* Categories */}
-        <div
-          className={`flex flex-wrap gap-2 justify-center transition-all duration-500 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
-        >
-          {quote.categories.map((cat) => (
+        <div className="flex flex-wrap gap-2 justify-center">
+          {displayed.categories.map((cat) => (
             <Badge key={cat} category={cat} />
           ))}
         </div>
 
         {/* Quote */}
-        <div
-          className={`transition-all duration-700 delay-150 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
-        >
+        <div>
           <span className="block font-serif text-white/15 text-7xl leading-none -mb-4 select-none">"</span>
           <blockquote className="font-serif text-white text-2xl md:text-3xl lg:text-4xl font-light leading-relaxed">
-            {quote.text}
+            {displayed.text}
           </blockquote>
           <span className="block font-serif text-white/15 text-7xl leading-none -mt-6 select-none rotate-180">"</span>
         </div>
 
         {/* Translation */}
-        {quote.translation && quote.language !== "vi" && (
-          <p
-            className={`text-white/50 text-sm md:text-base italic font-sans transition-all duration-500 delay-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
-          >
-            {quote.translation}
+        {displayed.translation && displayed.language !== "vi" && (
+          <p className="text-white/50 text-sm md:text-base italic font-sans">
+            {displayed.translation}
           </p>
         )}
 
         {/* Author */}
-        <div
-          className={`mt-2 transition-all duration-500 delay-400 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"}`}
-        >
-          <QuoteAuthor author={quote.author} authorSlug={quote.authorSlug} source={quote.source} size="md" />
+        <div className="mt-2">
+          <QuoteAuthor
+            author={displayed.author}
+            authorSlug={displayed.authorSlug}
+            source={displayed.source}
+            size="md"
+          />
         </div>
 
         {/* Tap hint */}
-        <p
-          className={`text-white/25 text-xs mt-4 transition-all duration-500 delay-500 ${visible ? "opacity-100" : "opacity-0"}`}
-        >
-          Nhấn để đổi câu
-        </p>
+        <p className="text-white/25 text-xs mt-4">Nhấn để đổi câu</p>
       </div>
     </div>
   );
