@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Badge } from "@/components/ui/Badge";
 import { QuoteAuthor } from "./QuoteAuthor";
 import { getAuthorImage, CATEGORY_META } from "@/lib/quotes";
 import type { Quote } from "@/types";
 
-const FADE_OUT_MS = 350;
-const FADE_IN_MS = 600;
+const BG_CROSSFADE_MS = 800; // background A→B crossfade duration
+const TEXT_FADE_MS = 280;    // text fade-out duration before swap
 
 interface QuoteHeroProps {
   quote: Quote;
@@ -16,28 +16,56 @@ interface QuoteHeroProps {
 }
 
 export function QuoteHero({ quote, onRefresh, dateLabel }: QuoteHeroProps) {
+  // Displayed content (updates after text fade-out)
   const [displayed, setDisplayed] = useState<Quote>(quote);
-  const [visible, setVisible] = useState(false);
-  const [bgError, setBgError] = useState(false);
+  const [textVisible, setTextVisible] = useState(true);
+
+  // Two-layer background crossfade (ping-pong pattern)
+  const initialUrl = getAuthorImage(quote.authorSlug) ?? "";
+  const [layerA, setLayerA] = useState(initialUrl);
+  const [layerB, setLayerB] = useState(initialUrl);
+  const [topOpacity, setTopOpacity] = useState(1); // top = layerB
+  // true  → layerB is on top (visible)
+  // false → layerA is on top (layerB is fading out / hidden)
+  const bIsTop = useRef(true);
+  const isFirst = useRef(true);
 
   useEffect(() => {
-    // Step 1: fade everything out
-    setVisible(false);
+    // Skip on mount — already initialised above
+    if (isFirst.current) { isFirst.current = false; return; }
 
-    // Step 2: once fully faded, swap content then fade in
+    const newUrl = getAuthorImage(quote.authorSlug) ?? "";
+
+    // --- Background: crossfade A → B (or B → A) ---
+    if (bIsTop.current) {
+      // B is currently showing → load new image into A (hidden below), then fade B out
+      setLayerA(newUrl);
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => setTopOpacity(0))
+      );
+      bIsTop.current = false;
+    } else {
+      // A is currently showing → load new image into B (hidden below), then fade B in
+      setLayerB(newUrl);
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => setTopOpacity(1))
+      );
+      bIsTop.current = true;
+    }
+
+    // --- Text: fade out → swap → fade in ---
+    setTextVisible(false);
     const t = setTimeout(() => {
       setDisplayed(quote);
-      setBgError(false);
-      requestAnimationFrame(() =>
-        requestAnimationFrame(() => setVisible(true))
-      );
-    }, FADE_OUT_MS);
+      setTextVisible(true);
+    }, TEXT_FADE_MS + 40);
 
     return () => clearTimeout(t);
   }, [quote.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const imageUrl = getAuthorImage(displayed.authorSlug);
-  const gradient = CATEGORY_META[displayed.categories[0]]?.gradient ?? "from-violet-900 via-purple-800 to-indigo-900";
+  const gradient =
+    CATEGORY_META[displayed.categories[0]]?.gradient ??
+    "from-violet-900 via-purple-800 to-indigo-900";
 
   return (
     <div
@@ -45,34 +73,21 @@ export function QuoteHero({ quote, onRefresh, dateLabel }: QuoteHeroProps) {
       onClick={onRefresh}
       title="Nhấn để đổi câu"
     >
-      {/* Black overlay — controls all fade via opacity */}
+      {/* Layer A — bottom */}
+      <BgLayer url={layerA} opacity={topOpacity === 0 ? 1 : 0} zIndex={1} />
+
+      {/* Layer B — top (crossfades over A) */}
+      <BgLayer url={layerB} opacity={topOpacity} zIndex={2} crossfadeMs={BG_CROSSFADE_MS} />
+
+      {/* Text content */}
       <div
-        className="absolute inset-0 bg-black pointer-events-none z-[1]"
+        className="relative z-10 flex flex-col items-center gap-3 w-full max-w-2xl"
         style={{
-          opacity: visible ? 0 : 1,
-          transition: `opacity ${visible ? FADE_IN_MS : FADE_OUT_MS}ms ease`,
+          opacity: textVisible ? 1 : 0,
+          transform: textVisible ? "translateY(0)" : "translateY(10px)",
+          transition: `opacity ${TEXT_FADE_MS}ms ease, transform ${TEXT_FADE_MS}ms ease`,
         }}
-      />
-
-      {/* Author background image */}
-      {imageUrl && !bgError && (
-        <div className="absolute inset-0 z-0">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={imageUrl}
-            alt=""
-            aria-hidden
-            className="w-full h-full object-cover object-top"
-            style={{ filter: "blur(8px)", transform: "scale(1.08)" }}
-            onError={() => setBgError(true)}
-          />
-          <div className="absolute inset-0 bg-black/65" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30" />
-        </div>
-      )}
-
-      {/* Content */}
-      <div className="relative z-[2] flex flex-col items-center gap-3 w-full max-w-2xl">
+      >
         <p className="text-white/40 text-xs font-sans tracking-widest uppercase">
           {dateLabel}
         </p>
@@ -108,6 +123,38 @@ export function QuoteHero({ quote, onRefresh, dateLabel }: QuoteHeroProps) {
 
         <p className="text-white/25 text-xs mt-4">Nhấn để đổi câu</p>
       </div>
+    </div>
+  );
+}
+
+// ─── Sub-component: one background image layer ───────────────────────────────
+function BgLayer({
+  url,
+  opacity,
+  zIndex,
+  crossfadeMs = BG_CROSSFADE_MS,
+}: {
+  url: string;
+  opacity: number;
+  zIndex: number;
+  crossfadeMs?: number;
+}) {
+  if (!url) return null;
+  return (
+    <div
+      className="absolute inset-0"
+      style={{ opacity, zIndex, transition: `opacity ${crossfadeMs}ms ease` }}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={url}
+        alt=""
+        aria-hidden
+        className="w-full h-full object-cover object-top"
+        style={{ filter: "blur(8px)", transform: "scale(1.08)" }}
+      />
+      <div className="absolute inset-0 bg-black/65" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30" />
     </div>
   );
 }
