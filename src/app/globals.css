@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    @apply bg-gray-950;
+  }
+
+  * {
+    @apply box-border;
+  }
+}
+
+@layer utilities {
+  .bg-white\/8 {
+    background-color: rgb(255 255 255 / 0.08);
+  }
+  .bg-white\/12 {
+    background-color: rgb(255 255 255 / 0.12);
+  }
+  .hover\:bg-white\/12:hover {
+    background-color: rgb(255 255 255 / 0.12);
+  }
+  .hover\:bg-white\/25:hover {
+    background-color: rgb(255 255 255 / 0.25);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-gradient-shift,
+  .animate-fade-up,
+  .animate-fade-in,
+  .animate-pulse-soft {
+    animation: none !important;
+  }
+}

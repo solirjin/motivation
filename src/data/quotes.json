@@ -1,0 +1,592 @@
+{
+  "version": "1.0",
+  "quotes": [
+    {
+      "id": "ho-chi-minh-kien-tri-001",
+      "text": "Không có việc gì khó, chỉ sợ lòng không bền. Đào núi và lấp biển, quyết chí ắt làm nên.",
+      "author": "Hồ Chí Minh",
+      "authorSlug": "ho-chi-minh",
+      "language": "vi",
+      "categories": ["perseverance", "motivation"],
+      "translation": "Nothing is difficult if you have the will. Move mountains and fill seas — with determination, all can be done.",
+      "featured": true
+    },
+    {
+      "id": "nguyen-du-tram-nam-001",
+      "text": "Trăm năm trong cõi người ta, chữ tài chữ mệnh khéo là ghét nhau.",
+      "author": "Nguyễn Du",
+      "authorSlug": "nguyen-du",
+      "language": "vi",
+      "categories": ["life", "wisdom"],
+      "translation": "In the span of a hundred years of human life, talent and fate are often at odds with each other."
+    },
+    {
+      "id": "nguyen-trai-bi-kich-001",
+      "text": "Việc nhân nghĩa cốt ở yên dân, quân điếu phạt trước lo trừ bạo.",
+      "author": "Nguyễn Trãi",
+      "authorSlug": "nguyen-trai",
+      "language": "vi",
+      "categories": ["wisdom", "courage"],
+      "source": "Bình Ngô Đại Cáo"
+    },
+    {
+      "id": "einstein-imagination-001",
+      "text": "Imagination is more important than knowledge. For knowledge is limited, whereas imagination embraces the entire world.",
+      "author": "Albert Einstein",
+      "authorSlug": "albert-einstein",
+      "language": "en",
+      "categories": ["wisdom", "success"],
+      "translation": "Trí tưởng tượng quan trọng hơn kiến thức. Vì kiến thức có giới hạn, còn trí tưởng tượng bao trùm cả thế giới."
+    },
+    {
+      "id": "einstein-life-001",
+      "text": "Life is like riding a bicycle. To keep your balance, you must keep moving.",
+      "author": "Albert Einstein",
+      "authorSlug": "albert-einstein",
+      "language": "en",
+      "categories": ["life", "motivation"],
+      "translation": "Cuộc sống như đi xe đạp. Để giữ thăng bằng, bạn phải tiếp tục tiến về phía trước."
+    },
+    {
+      "id": "roosevelt-believe-001",
+      "text": "Believe you can and you're halfway there.",
+      "author": "Theodore Roosevelt",
+      "authorSlug": "theodore-roosevelt",
+      "language": "en",
+      "categories": ["motivation", "success"],
+      "translation": "Hãy tin bạn có thể làm được, và bạn đã đi được nửa đường."
+    },
+    {
+      "id": "mandela-courage-001",
+      "text": "I learned that courage was not the absence of fear, but the triumph over it. The brave man is not he who does not feel afraid, but he who conquers that fear.",
+      "author": "Nelson Mandela",
+      "authorSlug": "nelson-mandela",
+      "language": "en",
+      "categories": ["courage", "motivation"],
+      "translation": "Tôi học được rằng lòng dũng cảm không phải là không có sợ hãi, mà là chiến thắng nó."
+    },
+    {
+      "id": "steve-jobs-great-work-001",
+      "text": "The only way to do great work is to love what you do.",
+      "author": "Steve Jobs",
+      "authorSlug": "steve-jobs",
+      "language": "en",
+      "categories": ["success", "motivation"],
+      "translation": "Cách duy nhất để làm ra công việc vĩ đại là yêu thích những gì bạn làm.",
+      "featured": true
+    },
+    {
+      "id": "steve-jobs-stay-foolish-001",
+      "text": "Stay hungry, stay foolish.",
+      "author": "Steve Jobs",
+      "authorSlug": "steve-jobs",
+      "language": "en",
+      "categories": ["motivation", "success"],
+      "translation": "Hãy luôn khát vọng, hãy luôn dại khờ."
+    },
+    {
+      "id": "oprah-biggest-adventure-001",
+      "text": "The biggest adventure you can take is to live the life of your dreams.",
+      "author": "Oprah Winfrey",
+      "authorSlug": "oprah-winfrey",
+      "language": "en",
+      "categories": ["life", "motivation"],
+      "translation": "Cuộc phiêu lưu lớn nhất bạn có thể thực hiện là sống cuộc sống trong mơ của bạn."
+    },
+    {
+      "id": "maya-angelou-rainbow-001",
+      "text": "Try to be a rainbow in someone's cloud.",
+      "author": "Maya Angelou",
+      "authorSlug": "maya-angelou",
+      "language": "en",
+      "categories": ["love", "happiness"],
+      "translation": "Hãy cố gắng là cầu vồng trong đám mây của ai đó."
+    },
+    {
+      "id": "confucius-choose-job-001",
+      "text": "Choose a job you love, and you will never have to work a day in your life.",
+      "author": "Confucius",
+      "authorSlug": "confucius",
+      "language": "en",
+      "categories": ["success", "happiness"],
+      "translation": "Hãy chọn một công việc bạn yêu thích, và bạn sẽ không phải làm việc một ngày nào trong cuộc đời mình."
+    },
+    {
+      "id": "confucius-learning-001",
+      "text": "It does not matter how slowly you go as long as you do not stop.",
+      "author": "Confucius",
+      "authorSlug": "confucius",
+      "language": "en",
+      "categories": ["perseverance", "wisdom"],
+      "translation": "Không quan trọng bạn đi chậm như thế nào, miễn là bạn không dừng lại."
+    },
+    {
+      "id": "churchill-never-give-up-001",
+      "text": "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+      "author": "Winston Churchill",
+      "authorSlug": "winston-churchill",
+      "language": "en",
+      "categories": ["success", "courage", "perseverance"],
+      "translation": "Thành công không phải là điểm kết, thất bại không phải là điểm chết: điều quan trọng là dũng cảm tiếp tục."
+    },
+    {
+      "id": "lincoln-prepare-001",
+      "text": "Give me six hours to chop down a tree and I will spend the first four sharpening the axe.",
+      "author": "Abraham Lincoln",
+      "authorSlug": "abraham-lincoln",
+      "language": "en",
+      "categories": ["wisdom", "success"],
+      "translation": "Cho tôi sáu giờ để chặt một cái cây và tôi sẽ dành bốn giờ đầu tiên để mài rìu."
+    },
+    {
+      "id": "tuc-ngu-co-chi-001",
+      "text": "Có chí thì nên.",
+      "author": "Tục ngữ Việt Nam",
+      "authorSlug": "tuc-ngu-viet-nam",
+      "language": "vi",
+      "categories": ["perseverance", "motivation"],
+      "translation": "Where there's a will, there's a way."
+    },
+    {
+      "id": "tuc-ngu-that-bai-001",
+      "text": "Thất bại là mẹ thành công.",
+      "author": "Tục ngữ Việt Nam",
+      "authorSlug": "tuc-ngu-viet-nam",
+      "language": "vi",
+      "categories": ["success", "perseverance"],
+      "translation": "Failure is the mother of success."
+    },
+    {
+      "id": "tuc-ngu-hoc-001",
+      "text": "Học, học nữa, học mãi.",
+      "author": "Tục ngữ Việt Nam",
+      "authorSlug": "tuc-ngu-viet-nam",
+      "language": "vi",
+      "categories": ["wisdom", "motivation"],
+      "translation": "Learn, learn more, keep learning."
+    },
+    {
+      "id": "tuc-ngu-doan-ket-001",
+      "text": "Đoàn kết là sức mạnh.",
+      "author": "Tục ngữ Việt Nam",
+      "authorSlug": "tuc-ngu-viet-nam",
+      "language": "vi",
+      "categories": ["wisdom", "courage"]
+    },
+    {
+      "id": "luu-huu-phuoc-tien-quan-001",
+      "text": "Đoàn quân Việt Nam đi, chung lòng cứu quốc.",
+      "author": "Văn Cao",
+      "authorSlug": "van-cao",
+      "language": "vi",
+      "categories": ["courage", "motivation"],
+      "source": "Tiến Quân Ca"
+    },
+    {
+      "id": "socrates-know-001",
+      "text": "The only true wisdom is in knowing you know nothing.",
+      "author": "Socrates",
+      "authorSlug": "socrates",
+      "language": "en",
+      "categories": ["wisdom"],
+      "translation": "Trí tuệ thực sự duy nhất là biết rằng bạn không biết gì cả."
+    },
+    {
+      "id": "aristotle-excellence-001",
+      "text": "We are what we repeatedly do. Excellence, then, is not an act, but a habit.",
+      "author": "Aristotle",
+      "authorSlug": "aristotle",
+      "language": "en",
+      "categories": ["wisdom", "success"],
+      "translation": "Chúng ta là những gì chúng ta liên tục làm. Sự xuất sắc, vì vậy, không phải là một hành động, mà là một thói quen."
+    },
+    {
+      "id": "plato-beginning-001",
+      "text": "The beginning is the most important part of the work.",
+      "author": "Plato",
+      "authorSlug": "plato",
+      "language": "en",
+      "categories": ["wisdom", "motivation"],
+      "translation": "Khởi đầu là phần quan trọng nhất của công việc."
+    },
+    {
+      "id": "buddha-mind-001",
+      "text": "The mind is everything. What you think you become.",
+      "author": "Đức Phật",
+      "authorSlug": "duc-phat",
+      "language": "en",
+      "categories": ["wisdom", "life"],
+      "translation": "Tâm là tất cả. Bạn nghĩ gì, bạn trở thành đó."
+    },
+    {
+      "id": "buddha-peace-001",
+      "text": "Peace comes from within. Do not seek it without.",
+      "author": "Đức Phật",
+      "authorSlug": "duc-phat",
+      "language": "en",
+      "categories": ["happiness", "wisdom"],
+      "translation": "Sự bình yên đến từ bên trong. Đừng tìm kiếm nó bên ngoài."
+    },
+    {
+      "id": "lao-tzu-journey-001",
+      "text": "A journey of a thousand miles begins with a single step.",
+      "author": "Lão Tử",
+      "authorSlug": "lao-tu",
+      "language": "en",
+      "categories": ["motivation", "perseverance"],
+      "translation": "Hành trình ngàn dặm bắt đầu từ một bước chân."
+    },
+    {
+      "id": "lao-tzu-water-001",
+      "text": "Water is fluid, soft, and yielding. But water will wear away rock, which is rigid and cannot yield.",
+      "author": "Lão Tử",
+      "authorSlug": "lao-tu",
+      "language": "en",
+      "categories": ["perseverance", "wisdom"],
+      "translation": "Nước thì lỏng, mềm mại và nhường nhịn. Nhưng nước sẽ mài mòn đá, thứ cứng rắn và không thể nhường nhịn."
+    },
+    {
+      "id": "helen-keller-face-001",
+      "text": "Keep your face to the sunshine and you cannot see a shadow.",
+      "author": "Helen Keller",
+      "authorSlug": "helen-keller",
+      "language": "en",
+      "categories": ["happiness", "motivation"],
+      "translation": "Hãy luôn hướng mặt về phía ánh nắng và bạn sẽ không nhìn thấy bóng tối."
+    },
+    {
+      "id": "helen-keller-alone-001",
+      "text": "Alone we can do so little; together we can do so much.",
+      "author": "Helen Keller",
+      "authorSlug": "helen-keller",
+      "language": "en",
+      "categories": ["wisdom", "success"],
+      "translation": "Một mình chúng ta có thể làm được rất ít; cùng nhau chúng ta có thể làm được rất nhiều."
+    },
+    {
+      "id": "dalai-lama-happiness-001",
+      "text": "Happiness is not something ready made. It comes from your own actions.",
+      "author": "Đức Đạt Lai Lạt Ma",
+      "authorSlug": "dalai-lama",
+      "language": "en",
+      "categories": ["happiness", "wisdom"],
+      "translation": "Hạnh phúc không phải là thứ có sẵn. Nó đến từ chính hành động của bạn."
+    },
+    {
+      "id": "dalai-lama-kindness-001",
+      "text": "My religion is very simple. My religion is kindness.",
+      "author": "Đức Đạt Lai Lạt Ma",
+      "authorSlug": "dalai-lama",
+      "language": "en",
+      "categories": ["love", "wisdom"],
+      "translation": "Tôn giáo của tôi rất đơn giản. Tôn giáo của tôi là lòng tử tế."
+    },
+    {
+      "id": "rumi-wound-001",
+      "text": "The wound is the place where the Light enters you.",
+      "author": "Rumi",
+      "authorSlug": "rumi",
+      "language": "en",
+      "categories": ["life", "wisdom"],
+      "translation": "Vết thương là nơi mà Ánh Sáng đi vào bạn."
+    },
+    {
+      "id": "rumi-love-001",
+      "text": "Out beyond ideas of wrongdoing and rightdoing, there is a field. I'll meet you there.",
+      "author": "Rumi",
+      "authorSlug": "rumi",
+      "language": "en",
+      "categories": ["love", "wisdom"],
+      "translation": "Bên ngoài những quan niệm về đúng và sai, có một cánh đồng. Tôi sẽ gặp bạn ở đó."
+    },
+    {
+      "id": "nguyen-cong-tru-chi-001",
+      "text": "Làm trai đứng ở trong trời đất, phải có danh gì với núi sông.",
+      "author": "Nguyễn Công Trứ",
+      "authorSlug": "nguyen-cong-tru",
+      "language": "vi",
+      "categories": ["courage", "motivation"],
+      "translation": "A man standing in this world must leave a name for himself with the rivers and mountains."
+    },
+    {
+      "id": "cao-ba-quat-con-duong-001",
+      "text": "Trải qua một cuộc bể dâu, những điều trông thấy mà đau đớn lòng.",
+      "author": "Nguyễn Du",
+      "authorSlug": "nguyen-du",
+      "language": "vi",
+      "categories": ["life", "wisdom"],
+      "translation": "Having experienced the great changes of life, the things one witnesses bring pain to the heart."
+    },
+    {
+      "id": "tran-hung-dao-dau-001",
+      "text": "Kẻ thù của ta không phải người ngoại quốc, mà chính là sự nhu nhược trong lòng ta.",
+      "author": "Trần Hưng Đạo",
+      "authorSlug": "tran-hung-dao",
+      "language": "vi",
+      "categories": ["courage", "wisdom"],
+      "translation": "Our enemy is not the foreigner, but the weakness within our own hearts."
+    },
+    {
+      "id": "mark-twain-secret-001",
+      "text": "The secret of getting ahead is getting started.",
+      "author": "Mark Twain",
+      "authorSlug": "mark-twain",
+      "language": "en",
+      "categories": ["motivation", "success"],
+      "translation": "Bí quyết để tiến về phía trước là bắt đầu."
+    },
+    {
+      "id": "mark-twain-courage-001",
+      "text": "Courage is resistance to fear, mastery of fear — not absence of fear.",
+      "author": "Mark Twain",
+      "authorSlug": "mark-twain",
+      "language": "en",
+      "categories": ["courage"],
+      "translation": "Lòng dũng cảm là sự kháng cự với nỗi sợ, là làm chủ nỗi sợ — không phải là không có nỗi sợ."
+    },
+    {
+      "id": "thomas-edison-genius-001",
+      "text": "Genius is one percent inspiration and ninety-nine percent perspiration.",
+      "author": "Thomas Edison",
+      "authorSlug": "thomas-edison",
+      "language": "en",
+      "categories": ["success", "perseverance"],
+      "translation": "Thiên tài là một phần trăm cảm hứng và chín mươi chín phần trăm mồ hôi."
+    },
+    {
+      "id": "thomas-edison-fail-001",
+      "text": "I have not failed. I've just found 10,000 ways that won't work.",
+      "author": "Thomas Edison",
+      "authorSlug": "thomas-edison",
+      "language": "en",
+      "categories": ["perseverance", "motivation"],
+      "translation": "Tôi không thất bại. Tôi chỉ tìm ra 10.000 cách không hiệu quả."
+    },
+    {
+      "id": "nguyen-binh-khiem-an-vi-001",
+      "text": "Rằng ăn cần kiệm mới no, Đi kín thì lại có đường mà đi.",
+      "author": "Nguyễn Bỉnh Khiêm",
+      "authorSlug": "nguyen-binh-khiem",
+      "language": "vi",
+      "categories": ["wisdom", "life"]
+    },
+    {
+      "id": "martin-luther-king-faith-001",
+      "text": "Faith is taking the first step even when you don't see the whole staircase.",
+      "author": "Martin Luther King Jr.",
+      "authorSlug": "martin-luther-king",
+      "language": "en",
+      "categories": ["courage", "motivation"],
+      "translation": "Niềm tin là bước chân đầu tiên ngay cả khi bạn chưa nhìn thấy toàn bộ cầu thang."
+    },
+    {
+      "id": "martin-luther-king-darkness-001",
+      "text": "Darkness cannot drive out darkness; only light can do that. Hate cannot drive out hate; only love can do that.",
+      "author": "Martin Luther King Jr.",
+      "authorSlug": "martin-luther-king",
+      "language": "en",
+      "categories": ["love", "wisdom"],
+      "translation": "Bóng tối không thể xua tan bóng tối; chỉ có ánh sáng mới làm được điều đó. Hận thù không thể xua tan hận thù; chỉ có tình yêu mới làm được điều đó."
+    },
+    {
+      "id": "pablo-picasso-meaning-001",
+      "text": "The meaning of life is to find your gift. The purpose of life is to give it away.",
+      "author": "Pablo Picasso",
+      "authorSlug": "pablo-picasso",
+      "language": "en",
+      "categories": ["life", "happiness"],
+      "translation": "Ý nghĩa của cuộc sống là tìm ra món quà của bạn. Mục đích của cuộc sống là trao tặng nó đi."
+    },
+    {
+      "id": "van-gogh-dream-001",
+      "text": "I dream of painting and then I paint my dream.",
+      "author": "Vincent van Gogh",
+      "authorSlug": "vincent-van-gogh",
+      "language": "en",
+      "categories": ["motivation", "happiness"],
+      "translation": "Tôi mơ về hội họa và rồi tôi vẽ giấc mơ của mình."
+    },
+    {
+      "id": "marie-curie-nothing-001",
+      "text": "Nothing in life is to be feared, it is only to be understood. Now is the time to understand more, so that we may fear less.",
+      "author": "Marie Curie",
+      "authorSlug": "marie-curie",
+      "language": "en",
+      "categories": ["wisdom", "courage"],
+      "translation": "Không có gì trong cuộc sống đáng để sợ, chỉ cần hiểu nó. Bây giờ là lúc hiểu thêm để chúng ta sợ ít hơn."
+    },
+    {
+      "id": "camus-autumn-001",
+      "text": "Autumn is a second spring when every leaf is a flower.",
+      "author": "Albert Camus",
+      "authorSlug": "albert-camus",
+      "language": "en",
+      "categories": ["life", "happiness"],
+      "translation": "Mùa thu là mùa xuân thứ hai khi mỗi chiếc lá là một bông hoa."
+    },
+    {
+      "id": "seneca-time-001",
+      "text": "It is not that we have a short time to live, but that we waste a lot of it.",
+      "author": "Seneca",
+      "authorSlug": "seneca",
+      "language": "en",
+      "categories": ["wisdom", "life"],
+      "translation": "Không phải chúng ta có ít thời gian để sống, mà là chúng ta lãng phí quá nhiều trong số đó."
+    },
+    {
+      "id": "seneca-struggle-001",
+      "text": "No man was ever wise by chance.",
+      "author": "Seneca",
+      "authorSlug": "seneca",
+      "language": "en",
+      "categories": ["wisdom", "success"],
+      "translation": "Không ai trở nên khôn ngoan nhờ may mắn cả."
+    },
+    {
+      "id": "marcus-aurelius-power-001",
+      "text": "You have power over your mind — not outside events. Realize this, and you will find strength.",
+      "author": "Marcus Aurelius",
+      "authorSlug": "marcus-aurelius",
+      "language": "en",
+      "categories": ["wisdom", "courage"],
+      "translation": "Bạn có quyền kiểm soát tâm trí của mình — không phải các sự kiện bên ngoài. Nhận ra điều này, và bạn sẽ tìm thấy sức mạnh."
+    },
+    {
+      "id": "marcus-aurelius-obstacles-001",
+      "text": "The impediment to action advances action. What stands in the way becomes the way.",
+      "author": "Marcus Aurelius",
+      "authorSlug": "marcus-aurelius",
+      "language": "en",
+      "categories": ["perseverance", "wisdom"],
+      "translation": "Trở ngại cho hành động đẩy hành động về phía trước. Những gì cản đường trở thành con đường."
+    },
+    {
+      "id": "epictetus-control-001",
+      "text": "Make the best use of what is in your power, and take the rest as it happens.",
+      "author": "Epictetus",
+      "authorSlug": "epictetus",
+      "language": "en",
+      "categories": ["wisdom", "life"],
+      "translation": "Hãy tận dụng tối đa những gì trong tầm tay bạn, và chấp nhận phần còn lại như nó xảy ra."
+    },
+    {
+      "id": "ralph-waldo-emerson-yourself-001",
+      "text": "To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment.",
+      "author": "Ralph Waldo Emerson",
+      "authorSlug": "ralph-waldo-emerson",
+      "language": "en",
+      "categories": ["courage", "life"],
+      "translation": "Là chính mình trong một thế giới liên tục cố gắng biến bạn thành người khác là thành tựu vĩ đại nhất."
+    },
+    {
+      "id": "henry-david-thoreau-dreams-001",
+      "text": "Go confidently in the direction of your dreams. Live the life you have imagined.",
+      "author": "Henry David Thoreau",
+      "authorSlug": "henry-david-thoreau",
+      "language": "en",
+      "categories": ["motivation", "life"],
+      "translation": "Hãy tự tin bước đi theo hướng của những ước mơ. Sống cuộc sống mà bạn đã tưởng tượng."
+    },
+    {
+      "id": "oscar-wilde-yourself-001",
+      "text": "Be yourself; everyone else is already taken.",
+      "author": "Oscar Wilde",
+      "authorSlug": "oscar-wilde",
+      "language": "en",
+      "categories": ["life", "happiness"],
+      "translation": "Hãy là chính mình; tất cả người khác đã có người khác làm rồi."
+    },
+    {
+      "id": "paulo-coelho-dream-001",
+      "text": "And, when you want something, all the universe conspires in helping you to achieve it.",
+      "author": "Paulo Coelho",
+      "authorSlug": "paulo-coelho",
+      "language": "en",
+      "categories": ["motivation", "success"],
+      "source": "The Alchemist",
+      "translation": "Và khi bạn thực sự muốn điều gì đó, toàn bộ vũ trụ sẽ cùng nhau giúp bạn đạt được nó.",
+      "featured": true
+    },
+    {
+      "id": "paulo-coelho-present-001",
+      "text": "One day you will wake up and there won't be any more time to do the things you've always wanted. Do it now.",
+      "author": "Paulo Coelho",
+      "authorSlug": "paulo-coelho",
+      "language": "en",
+      "categories": ["motivation", "life"],
+      "translation": "Một ngày nào đó bạn sẽ thức dậy và không còn thời gian để làm những điều bạn luôn muốn. Hãy làm ngay bây giờ."
+    },
+    {
+      "id": "anne-frank-goodness-001",
+      "text": "Despite everything, I believe that people are really good at heart.",
+      "author": "Anne Frank",
+      "authorSlug": "anne-frank",
+      "language": "en",
+      "categories": ["love", "life"],
+      "translation": "Dù mọi chuyện ra sao, tôi vẫn tin rằng con người về bản chất thực sự tốt bụng."
+    },
+    {
+      "id": "khalil-gibran-love-001",
+      "text": "You give but little when you give of your possessions. It is when you give of yourself that you truly give.",
+      "author": "Khalil Gibran",
+      "authorSlug": "khalil-gibran",
+      "language": "en",
+      "categories": ["love", "wisdom"],
+      "translation": "Bạn cho ít khi bạn cho của cải. Chỉ khi bạn cho đi chính mình thì bạn mới thực sự cho."
+    },
+    {
+      "id": "nguyen-van-sieu-hoc-001",
+      "text": "Muốn sang thì bắc cầu Kiều, muốn con hay chữ thì yêu lấy thầy.",
+      "author": "Ca dao Việt Nam",
+      "authorSlug": "ca-dao-viet-nam",
+      "language": "vi",
+      "categories": ["wisdom", "life"],
+      "translation": "To cross over, build a bridge; to have a learned child, respect the teacher."
+    },
+    {
+      "id": "ca-dao-kho-001",
+      "text": "Đời người có một gang tay, ai hay ngủ ngày còn lại nửa gang.",
+      "author": "Ca dao Việt Nam",
+      "authorSlug": "ca-dao-viet-nam",
+      "language": "vi",
+      "categories": ["life", "wisdom"],
+      "translation": "Human life spans but a hand's width; those who sleep the day away have but half a hand."
+    },
+    {
+      "id": "ca-dao-chiu-kho-001",
+      "text": "Có công mài sắt, có ngày nên kim.",
+      "author": "Ca dao Việt Nam",
+      "authorSlug": "ca-dao-viet-nam",
+      "language": "vi",
+      "categories": ["perseverance", "success"],
+      "translation": "Keep grinding iron diligently, and one day it will become a needle."
+    },
+    {
+      "id": "tuc-ngu-gap-kho-001",
+      "text": "Gian nan rèn luyện mới thành tài.",
+      "author": "Tục ngữ Việt Nam",
+      "authorSlug": "tuc-ngu-viet-nam",
+      "language": "vi",
+      "categories": ["perseverance", "success"],
+      "translation": "Only through hardship and training does one become talented."
+    },
+    {
+      "id": "nelson-mandela-always-001",
+      "text": "It always seems impossible until it's done.",
+      "author": "Nelson Mandela",
+      "authorSlug": "nelson-mandela",
+      "language": "en",
+      "categories": ["motivation", "perseverance"],
+      "translation": "Mọi thứ luôn có vẻ không thể cho đến khi nó được thực hiện."
+    },
+    {
+      "id": "richard-branson-opportunity-001",
+      "text": "Every success story is a tale of constant adaption, revision and change.",
+      "author": "Richard Branson",
+      "authorSlug": "richard-branson",
+      "language": "en",
+      "categories": ["success", "motivation"],
+      "translation": "Mỗi câu chuyện thành công đều là câu chuyện về sự thích nghi, điều chỉnh và thay đổi liên tục."
+    }
+  ]
+}
