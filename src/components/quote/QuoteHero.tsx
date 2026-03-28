@@ -16,6 +16,7 @@ interface QuoteHeroProps {
 
 export function QuoteHero({ quote, onRefresh, dateLabel }: QuoteHeroProps) {
   const [visible, setVisible] = useState(false);
+  const [bgError, setBgError] = useState(false);
   const imageUrl = getAuthorImage(quote.authorSlug);
 
   useEffect(() => {
@@ -27,7 +28,7 @@ export function QuoteHero({ quote, onRefresh, dateLabel }: QuoteHeroProps) {
   return (
     <div className="relative flex flex-col items-center justify-center min-h-[calc(100vh-80px)] px-6 md:px-12 py-12 text-center overflow-hidden">
       {/* Author background image */}
-      {imageUrl && (
+      {imageUrl && !bgError && (
         <div
           className="absolute inset-0 transition-opacity duration-1000"
           style={{ opacity: visible ? 1 : 0 }}
@@ -37,8 +38,9 @@ export function QuoteHero({ quote, onRefresh, dateLabel }: QuoteHeroProps) {
             src={imageUrl}
             alt=""
             aria-hidden
-            className="w-full h-full object-cover object-top scale-110"
-            style={{ filter: "blur(32px)", transform: "scale(1.15)" }}
+            className="w-full h-full object-cover object-top"
+            style={{ filter: "blur(8px)", transform: "scale(1.08)" }}
+            onError={() => setBgError(true)}
           />
           {/* Dark gradient overlay so text stays readable */}
           <div className="absolute inset-0 bg-black/65" />

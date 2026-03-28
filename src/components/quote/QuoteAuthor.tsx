@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { getAuthorImage } from "@/lib/quotes";
 
 interface QuoteAuthorProps {
@@ -9,6 +12,7 @@ interface QuoteAuthorProps {
 
 export function QuoteAuthor({ author, authorSlug, source, size = "md" }: QuoteAuthorProps) {
   const imageUrl = authorSlug ? getAuthorImage(authorSlug) : undefined;
+  const [imgError, setImgError] = useState(false);
   const initial = author.charAt(0).toUpperCase();
 
   const sizeClasses = {
@@ -17,18 +21,19 @@ export function QuoteAuthor({ author, authorSlug, source, size = "md" }: QuoteAu
     lg: { avatar: "w-12 h-12 text-lg", name: "text-lg", source: "text-sm" },
   }[size];
 
+  const showImage = imageUrl && !imgError;
+
   return (
     <div className="flex items-center gap-3">
-      <div
-        className={`${sizeClasses.avatar} rounded-full border border-white/30 shrink-0 overflow-hidden`}
-      >
-        {imageUrl ? (
+      <div className={`${sizeClasses.avatar} rounded-full border border-white/30 shrink-0 overflow-hidden`}>
+        {showImage ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={imageUrl}
             alt={author}
             className="w-full h-full object-cover object-top"
             loading="lazy"
+            onError={() => setImgError(true)}
           />
         ) : (
           <div className="w-full h-full bg-white/20 backdrop-blur-sm flex items-center justify-center font-serif font-bold text-white">

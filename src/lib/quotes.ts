@@ -111,15 +111,15 @@ export const AUTHOR_IMAGES: Record<string, string> = {
     "https://upload.wikimedia.org/wikipedia/commons/b/bc/Socrates_Louvre.jpg",
   "marcus-aurelius":
     "https://upload.wikimedia.org/wikipedia/commons/e/ec/MSR-ra-1-1-della_colonna_di_marco_aurelio.jpg",
-  rumi: "https://upload.wikimedia.org/wikipedia/commons/c/cb/Mevlana_%28cropped%29.jpg",
+  rumi: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Maulana-Rumi.jpg",
   "nguyen-du":
-    "https://upload.wikimedia.org/wikipedia/vi/0/00/Nguyen_Du.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/5/5d/Nguyen_Du.jpg",
   "van-cao":
-    "https://upload.wikimedia.org/wikipedia/vi/e/e3/Composer_Van_Cao.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/9/9d/Van_Cao_1945.jpg",
   "duc-phat":
-    "https://upload.wikimedia.org/wikipedia/commons/f/f9/Buddhamurti.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/1/10/Siddharth_Gautam_Buddha.jpg",
   "lao-tu":
-    "https://upload.wikimedia.org/wikipedia/commons/e/ee/Lao_Tzu_-_Project_Gutenberg_eText_15250.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/e/ee/Laozi_-_Project_Gutenberg_eText_15250.jpg",
   "ralph-waldo-emerson":
     "https://upload.wikimedia.org/wikipedia/commons/d/d5/Ralph_Waldo_Emerson_ca1857_retouched.jpg",
   "oscar-wilde":
