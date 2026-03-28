@@ -2,6 +2,9 @@
 const nextConfig = {
   output: "export",
   basePath: "/motivation",
+  env: {
+    NEXT_PUBLIC_BASE_PATH: "/motivation",
+  },
   images: {
     unoptimized: true,
   },

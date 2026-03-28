@@ -30,6 +30,55 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Download author images
+        run: |
+          mkdir -p public/authors
+          dl() {
+            local slug="$1" url="$2"
+            wget -q --timeout=15 -O "public/authors/${slug}.jpg" "$url" \
+              && echo "✓ $slug" || echo "✗ $slug (skipped)"
+          }
+          dl "albert-einstein"     "https://upload.wikimedia.org/wikipedia/commons/d/d3/Albert_Einstein_Head.jpg"
+          dl "steve-jobs"          "https://upload.wikimedia.org/wikipedia/commons/b/b9/Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg"
+          dl "nelson-mandela"      "https://upload.wikimedia.org/wikipedia/commons/0/02/Nelson_Mandela_1994.jpg"
+          dl "ho-chi-minh"         "https://upload.wikimedia.org/wikipedia/commons/e/ef/Ho_Chi_Minh_1946.jpg"
+          dl "winston-churchill"   "https://upload.wikimedia.org/wikipedia/commons/b/bc/Sir_Winston_Churchill_-_19086236948.jpg"
+          dl "marie-curie"         "https://upload.wikimedia.org/wikipedia/commons/7/7e/Marie_Curie_c1920.jpg"
+          dl "martin-luther-king"  "https://upload.wikimedia.org/wikipedia/commons/0/05/Martin_Luther_King%2C_Jr..jpg"
+          dl "abraham-lincoln"     "https://upload.wikimedia.org/wikipedia/commons/a/ab/Abraham_Lincoln_O-77_matte_collodion_print.jpg"
+          dl "mark-twain"          "https://upload.wikimedia.org/wikipedia/commons/0/0c/Mark_Twain_by_AF_Bradley.jpg"
+          dl "thomas-edison"       "https://upload.wikimedia.org/wikipedia/commons/9/9d/Thomas_Edison2.jpg"
+          dl "helen-keller"        "https://upload.wikimedia.org/wikipedia/commons/a/a9/Anne_Sullivan_and_Helen_Keller.jpg"
+          dl "maya-angelou"        "https://upload.wikimedia.org/wikipedia/commons/4/4b/MayaAngelou-2013.jpg"
+          dl "oprah-winfrey"       "https://upload.wikimedia.org/wikipedia/commons/b/bf/Oprah_in_2014.jpg"
+          dl "paulo-coelho"        "https://upload.wikimedia.org/wikipedia/commons/1/10/Paulo_Coelho.jpg"
+          dl "anne-frank"          "https://upload.wikimedia.org/wikipedia/commons/b/be/Anne_Frank_1940.jpg"
+          dl "dalai-lama"          "https://upload.wikimedia.org/wikipedia/commons/6/64/Dalailama1_20121014_4639.jpg"
+          dl "theodore-roosevelt"  "https://upload.wikimedia.org/wikipedia/commons/1/19/President_Theodore_Roosevelt%2C_1904.jpg"
+          dl "confucius"           "https://upload.wikimedia.org/wikipedia/commons/2/23/Confucius_Tang_Dynasty.jpg"
+          dl "socrates"            "https://upload.wikimedia.org/wikipedia/commons/b/bc/Socrates_Louvre.jpg"
+          dl "marcus-aurelius"     "https://upload.wikimedia.org/wikipedia/commons/e/ec/MSR-ra-1-1-della_colonna_di_marco_aurelio.jpg"
+          dl "rumi"                "https://upload.wikimedia.org/wikipedia/commons/e/e6/Maulana-Rumi.jpg"
+          dl "nguyen-du"           "https://upload.wikimedia.org/wikipedia/commons/5/5d/Nguyen_Du.jpg"
+          dl "ralph-waldo-emerson" "https://upload.wikimedia.org/wikipedia/commons/d/d5/Ralph_Waldo_Emerson_ca1857_retouched.jpg"
+          dl "oscar-wilde"         "https://upload.wikimedia.org/wikipedia/commons/a/a2/Oscar_Wilde_portrait.jpg"
+          dl "pablo-picasso"       "https://upload.wikimedia.org/wikipedia/commons/9/98/Pablo_picasso_1.jpg"
+          dl "henry-david-thoreau" "https://upload.wikimedia.org/wikipedia/commons/a/a2/Henry_David_Thoreau.jpg"
+          dl "vincent-van-gogh"    "https://upload.wikimedia.org/wikipedia/commons/4/4c/Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project_%28454045%29.jpg"
+          dl "khalil-gibran"       "https://upload.wikimedia.org/wikipedia/commons/7/72/Kahlil_Gibran_1913.jpg"
+          dl "duc-phat"            "https://upload.wikimedia.org/wikipedia/commons/1/10/Siddharth_Gautam_Buddha.jpg"
+          dl "lao-tu"              "https://upload.wikimedia.org/wikipedia/commons/e/ee/Laozi_-_Project_Gutenberg_eText_15250.jpg"
+          dl "aristotle"           "https://upload.wikimedia.org/wikipedia/commons/a/ae/Aristotle_Altemps_Inv8575.jpg"
+          dl "seneca"              "https://upload.wikimedia.org/wikipedia/commons/3/3b/Lucius_Annaeus_Seneca_from_the_double_herm_in_the_Antikensammlung_Berlin.jpg"
+          dl "epictetus"           "https://upload.wikimedia.org/wikipedia/commons/c/c5/Epicteti_Enchiridion_Latinis_versibus_adumbratum_%28Oxford_1715%29_frontispiece.jpg"
+          dl "albert-camus"        "https://upload.wikimedia.org/wikipedia/commons/0/08/Albert_Camus%2C_gagnant_de_prix_Nobel%2C_portrait_en_buste%2C_pos%C3%A9_au_bureau%2C_faisant_face_%C3%A0_gauche%2C_cigarette_de_tabagisme.jpg"
+          dl "plato"               "https://upload.wikimedia.org/wikipedia/commons/8/88/Plato_Silanion_Musei_Capitolini_MC1377.jpg"
+          dl "tran-hung-dao"       "https://upload.wikimedia.org/wikipedia/commons/a/a4/Tranhungdao2.jpg"
+          dl "nguyen-cong-tru"     "https://upload.wikimedia.org/wikipedia/commons/a/ae/Nguyen_Cong_Tru.jpg"
+          dl "richard-branson"     "https://upload.wikimedia.org/wikipedia/commons/b/b8/Richard_Branson_-_20090601_%28cropped%29.jpg"
+          echo "Download complete. Files in public/authors/:"
+          ls -lh public/authors/
+
       - name: Build
         run: npm run build
 

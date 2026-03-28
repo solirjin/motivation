@@ -70,68 +70,47 @@ export const CATEGORY_META: Record<QuoteCategory, CategoryMeta> = {
   },
 };
 
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export const AUTHOR_IMAGES: Record<string, string> = {
-  "albert-einstein":
-    "https://upload.wikimedia.org/wikipedia/commons/d/d3/Albert_Einstein_Head.jpg",
-  "steve-jobs":
-    "https://upload.wikimedia.org/wikipedia/commons/b/b9/Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg",
-  "nelson-mandela":
-    "https://upload.wikimedia.org/wikipedia/commons/0/02/Nelson_Mandela_1994.jpg",
-  "ho-chi-minh":
-    "https://upload.wikimedia.org/wikipedia/commons/e/ef/Ho_Chi_Minh_1946.jpg",
-  "winston-churchill":
-    "https://upload.wikimedia.org/wikipedia/commons/b/bc/Sir_Winston_Churchill_-_19086236948.jpg",
-  "marie-curie":
-    "https://upload.wikimedia.org/wikipedia/commons/7/7e/Marie_Curie_c1920.jpg",
-  "martin-luther-king":
-    "https://upload.wikimedia.org/wikipedia/commons/0/05/Martin_Luther_King%2C_Jr..jpg",
-  "abraham-lincoln":
-    "https://upload.wikimedia.org/wikipedia/commons/a/ab/Abraham_Lincoln_O-77_matte_collodion_print.jpg",
-  "mark-twain":
-    "https://upload.wikimedia.org/wikipedia/commons/0/0c/Mark_Twain_by_AF_Bradley.jpg",
-  "thomas-edison":
-    "https://upload.wikimedia.org/wikipedia/commons/9/9d/Thomas_Edison2.jpg",
-  "helen-keller":
-    "https://upload.wikimedia.org/wikipedia/commons/a/a9/Anne_Sullivan_and_Helen_Keller.jpg",
-  "maya-angelou":
-    "https://upload.wikimedia.org/wikipedia/commons/4/4b/MayaAngelou-2013.jpg",
-  "oprah-winfrey":
-    "https://upload.wikimedia.org/wikipedia/commons/b/bf/Oprah_in_2014.jpg",
-  "paulo-coelho":
-    "https://upload.wikimedia.org/wikipedia/commons/1/10/Paulo_Coelho.jpg",
-  "anne-frank":
-    "https://upload.wikimedia.org/wikipedia/commons/b/be/Anne_Frank_1940.jpg",
-  "dalai-lama":
-    "https://upload.wikimedia.org/wikipedia/commons/6/64/Dalailama1_20121014_4639.jpg",
-  "theodore-roosevelt":
-    "https://upload.wikimedia.org/wikipedia/commons/1/19/President_Theodore_Roosevelt%2C_1904.jpg",
-  confucius:
-    "https://upload.wikimedia.org/wikipedia/commons/2/23/Confucius_Tang_Dynasty.jpg",
-  socrates:
-    "https://upload.wikimedia.org/wikipedia/commons/b/bc/Socrates_Louvre.jpg",
-  "marcus-aurelius":
-    "https://upload.wikimedia.org/wikipedia/commons/e/ec/MSR-ra-1-1-della_colonna_di_marco_aurelio.jpg",
-  rumi: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Maulana-Rumi.jpg",
-  "nguyen-du":
-    "https://upload.wikimedia.org/wikipedia/commons/5/5d/Nguyen_Du.jpg",
-  "van-cao":
-    "https://upload.wikimedia.org/wikipedia/commons/9/9d/Van_Cao_1945.jpg",
-  "duc-phat":
-    "https://upload.wikimedia.org/wikipedia/commons/1/10/Siddharth_Gautam_Buddha.jpg",
-  "lao-tu":
-    "https://upload.wikimedia.org/wikipedia/commons/e/ee/Laozi_-_Project_Gutenberg_eText_15250.jpg",
-  "ralph-waldo-emerson":
-    "https://upload.wikimedia.org/wikipedia/commons/d/d5/Ralph_Waldo_Emerson_ca1857_retouched.jpg",
-  "oscar-wilde":
-    "https://upload.wikimedia.org/wikipedia/commons/a/a2/Oscar_Wilde_portrait.jpg",
-  "pablo-picasso":
-    "https://upload.wikimedia.org/wikipedia/commons/9/98/Pablo_picasso_1.jpg",
-  "henry-david-thoreau":
-    "https://upload.wikimedia.org/wikipedia/commons/a/a2/Henry_David_Thoreau.jpg",
-  "vincent-van-gogh":
-    "https://upload.wikimedia.org/wikipedia/commons/4/4c/Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project_%28454045%29.jpg",
-  "khalil-gibran":
-    "https://upload.wikimedia.org/wikipedia/commons/7/72/Kahlil_Gibran_1913.jpg",
+  "albert-einstein":     `${BASE}/authors/albert-einstein.jpg`,
+  "steve-jobs":          `${BASE}/authors/steve-jobs.jpg`,
+  "nelson-mandela":      `${BASE}/authors/nelson-mandela.jpg`,
+  "ho-chi-minh":         `${BASE}/authors/ho-chi-minh.jpg`,
+  "winston-churchill":   `${BASE}/authors/winston-churchill.jpg`,
+  "marie-curie":         `${BASE}/authors/marie-curie.jpg`,
+  "martin-luther-king":  `${BASE}/authors/martin-luther-king.jpg`,
+  "abraham-lincoln":     `${BASE}/authors/abraham-lincoln.jpg`,
+  "mark-twain":          `${BASE}/authors/mark-twain.jpg`,
+  "thomas-edison":       `${BASE}/authors/thomas-edison.jpg`,
+  "helen-keller":        `${BASE}/authors/helen-keller.jpg`,
+  "maya-angelou":        `${BASE}/authors/maya-angelou.jpg`,
+  "oprah-winfrey":       `${BASE}/authors/oprah-winfrey.jpg`,
+  "paulo-coelho":        `${BASE}/authors/paulo-coelho.jpg`,
+  "anne-frank":          `${BASE}/authors/anne-frank.jpg`,
+  "dalai-lama":          `${BASE}/authors/dalai-lama.jpg`,
+  "theodore-roosevelt":  `${BASE}/authors/theodore-roosevelt.jpg`,
+  confucius:             `${BASE}/authors/confucius.jpg`,
+  socrates:              `${BASE}/authors/socrates.jpg`,
+  "marcus-aurelius":     `${BASE}/authors/marcus-aurelius.jpg`,
+  rumi:                  `${BASE}/authors/rumi.jpg`,
+  "nguyen-du":           `${BASE}/authors/nguyen-du.jpg`,
+  "duc-phat":            `${BASE}/authors/duc-phat.jpg`,
+  "lao-tu":              `${BASE}/authors/lao-tu.jpg`,
+  "ralph-waldo-emerson": `${BASE}/authors/ralph-waldo-emerson.jpg`,
+  "oscar-wilde":         `${BASE}/authors/oscar-wilde.jpg`,
+  "pablo-picasso":       `${BASE}/authors/pablo-picasso.jpg`,
+  "henry-david-thoreau": `${BASE}/authors/henry-david-thoreau.jpg`,
+  "vincent-van-gogh":    `${BASE}/authors/vincent-van-gogh.jpg`,
+  "khalil-gibran":       `${BASE}/authors/khalil-gibran.jpg`,
+  aristotle:             `${BASE}/authors/aristotle.jpg`,
+  seneca:                `${BASE}/authors/seneca.jpg`,
+  epictetus:             `${BASE}/authors/epictetus.jpg`,
+  "albert-camus":        `${BASE}/authors/albert-camus.jpg`,
+  plato:                 `${BASE}/authors/plato.jpg`,
+  "tran-hung-dao":       `${BASE}/authors/tran-hung-dao.jpg`,
+  "nguyen-cong-tru":     `${BASE}/authors/nguyen-cong-tru.jpg`,
+  "richard-branson":     `${BASE}/authors/richard-branson.jpg`,
 };
 
 export function getAuthorImage(authorSlug: string): string | undefined {
