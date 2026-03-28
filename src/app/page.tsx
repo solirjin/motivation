@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { GradientBackground } from "@/components/layout/GradientBackground";
 import { QuoteHero } from "@/components/quote/QuoteHero";
 import { useDailyQuote } from "@/hooks/useDailyQuote";
 import { useRandomQuote } from "@/hooks/useRandomQuote";
@@ -29,9 +28,5 @@ export default function HomePage() {
     day: "numeric",
   });
 
-  return (
-    <GradientBackground category={quote.categories[0]}>
-      <QuoteHero quote={quote} onRefresh={refresh} dateLabel={dateLabel} />
-    </GradientBackground>
-  );
+  return <QuoteHero quote={quote} onRefresh={refresh} dateLabel={dateLabel} />;
 }
