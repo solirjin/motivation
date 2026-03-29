@@ -22,6 +22,12 @@ export default function HomePage() {
 
   const { quote, refresh } = useRandomQuote(initialQuote);
 
+  // Auto-advance every 30 seconds
+  useEffect(() => {
+    const id = setInterval(refresh, 30_000);
+    return () => clearInterval(id);
+  }, [refresh]);
+
   const dateLabel = new Date().toLocaleDateString("vi-VN", {
     weekday: "long",
     month: "long",
