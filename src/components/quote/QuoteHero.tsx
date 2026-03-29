@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/Button";
 import { QuoteAuthor } from "./QuoteAuthor";
-import { QuoteActions } from "./QuoteActions";
+import { getAuthorImage, CATEGORY_META } from "@/lib/quotes";
 import type { Quote } from "@/types";
+
+const BG_CROSSFADE_MS = 800; // background A→B crossfade duration
+const TEXT_FADE_MS = 280;    // text fade-out duration before swap
 
 interface QuoteHeroProps {
   quote: Quote;
@@ -14,87 +16,145 @@ interface QuoteHeroProps {
 }
 
 export function QuoteHero({ quote, onRefresh, dateLabel }: QuoteHeroProps) {
-  const [visible, setVisible] = useState(false);
+  // Displayed content (updates after text fade-out)
+  const [displayed, setDisplayed] = useState<Quote>(quote);
+  const [textVisible, setTextVisible] = useState(true);
+
+  // Two-layer background crossfade (ping-pong pattern)
+  const initialUrl = getAuthorImage(quote.authorSlug) ?? "";
+  const [layerA, setLayerA] = useState(initialUrl);
+  const [layerB, setLayerB] = useState(initialUrl);
+  const [topOpacity, setTopOpacity] = useState(1); // top = layerB
+  // true  → layerB is on top (visible)
+  // false → layerA is on top (layerB is fading out / hidden)
+  const bIsTop = useRef(true);
+  const isFirst = useRef(true);
 
   useEffect(() => {
-    setVisible(false);
-    const t = setTimeout(() => setVisible(true), 50);
+    // Skip on mount — already initialised above
+    if (isFirst.current) { isFirst.current = false; return; }
+
+    const newUrl = getAuthorImage(quote.authorSlug) ?? "";
+
+    // --- Background: crossfade A → B (or B → A) ---
+    if (bIsTop.current) {
+      // B is currently showing → load new image into A (hidden below), then fade B out
+      setLayerA(newUrl);
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => setTopOpacity(0))
+      );
+      bIsTop.current = false;
+    } else {
+      // A is currently showing → load new image into B (hidden below), then fade B in
+      setLayerB(newUrl);
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => setTopOpacity(1))
+      );
+      bIsTop.current = true;
+    }
+
+    // --- Text: fade out → swap → fade in ---
+    setTextVisible(false);
+    const t = setTimeout(() => {
+      setDisplayed(quote);
+      setTextVisible(true);
+    }, TEXT_FADE_MS + 40);
+
     return () => clearTimeout(t);
-  }, [quote.id]);
+  }, [quote.id]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const gradient =
+    CATEGORY_META[displayed.categories[0]]?.gradient ??
+    "from-violet-900 via-purple-800 to-indigo-900";
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-80px)] px-6 md:px-12 py-12 text-center">
-      {/* Date label */}
-      <p
-        className={`text-white/50 text-sm font-sans tracking-widest uppercase mb-6 transition-opacity duration-500 ${visible ? "opacity-100" : "opacity-0"}`}
-      >
-        {dateLabel}
-      </p>
+    <div
+      className={`relative flex flex-col items-center justify-center h-[100dvh] px-6 md:px-12 text-center overflow-hidden cursor-pointer select-none bg-gradient-to-br ${gradient}`}
+      onClick={onRefresh}
+      title="Nhấn để đổi câu"
+    >
+      {/* Layer A — bottom */}
+      <BgLayer url={layerA} opacity={topOpacity === 0 ? 1 : 0} zIndex={1} />
 
-      {/* Categories */}
+      {/* Layer B — top (crossfades over A) */}
+      <BgLayer url={layerB} opacity={topOpacity} zIndex={2} crossfadeMs={BG_CROSSFADE_MS} />
+
+      {/* Text content */}
       <div
-        className={`flex flex-wrap gap-2 justify-center mb-8 transition-all duration-500 delay-100 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+        className="relative z-10 flex flex-col items-center gap-3 w-full max-w-2xl"
+        style={{
+          opacity: textVisible ? 1 : 0,
+          transform: textVisible ? "translateY(0)" : "translateY(10px)",
+          transition: `opacity ${TEXT_FADE_MS}ms ease, transform ${TEXT_FADE_MS}ms ease`,
+        }}
       >
-        {quote.categories.map((cat) => (
-          <Badge key={cat} category={cat} />
-        ))}
-      </div>
-
-      {/* Quote text */}
-      <div
-        className={`max-w-3xl transition-all duration-700 delay-150 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
-      >
-        <span className="block font-serif text-white/20 text-8xl md:text-9xl leading-none -mb-6 md:-mb-8 select-none">
-          "
-        </span>
-        <blockquote className="font-serif text-white text-2xl md:text-4xl lg:text-5xl font-light leading-relaxed tracking-wide">
-          {quote.text}
-        </blockquote>
-        <span className="block font-serif text-white/20 text-8xl md:text-9xl leading-none -mt-8 md:-mt-10 select-none rotate-180">
-          "
-        </span>
-      </div>
-
-      {/* Translation */}
-      {quote.translation && quote.language !== "vi" && (
-        <p
-          className={`max-w-2xl text-white/55 text-base md:text-lg italic mt-4 font-sans transition-all duration-500 delay-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
-        >
-          {quote.translation}
+        <p className="text-white/40 text-xs font-sans tracking-widest uppercase">
+          {dateLabel}
         </p>
-      )}
 
-      {/* Author */}
-      <div
-        className={`mt-8 transition-all duration-500 delay-400 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
-      >
-        <QuoteAuthor author={quote.author} source={quote.source} size="lg" />
+        <div className="flex flex-wrap gap-2 justify-center">
+          {displayed.categories.map((cat) => (
+            <Badge key={cat} category={cat} />
+          ))}
+        </div>
+
+        <div>
+          <span className="block font-serif text-white/15 text-7xl leading-none -mb-4 select-none">"</span>
+          <blockquote className="font-serif text-white text-2xl md:text-3xl lg:text-4xl font-light leading-relaxed">
+            {displayed.text}
+          </blockquote>
+          <span className="block font-serif text-white/15 text-7xl leading-none -mt-6 select-none rotate-180">"</span>
+        </div>
+
+        {displayed.translation && displayed.language !== "vi" && (
+          <p className="text-white/50 text-sm md:text-base italic font-sans">
+            {displayed.translation}
+          </p>
+        )}
+
+        <div className="mt-2">
+          <QuoteAuthor
+            author={displayed.author}
+            authorSlug={displayed.authorSlug}
+            source={displayed.source}
+            size="md"
+          />
+        </div>
+
+        <p className="text-white/25 text-xs mt-4">Nhấn để đổi câu</p>
       </div>
+    </div>
+  );
+}
 
-      {/* Actions */}
-      <div
-        className={`mt-8 flex flex-col items-center gap-4 transition-all duration-500 delay-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
-      >
-        <QuoteActions quote={quote} onRefresh={onRefresh} showRefresh />
-
-        <Button variant="ghost" size="sm" onClick={onRefresh} className="mt-2">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={2}
-            className="w-4 h-4"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
-            />
-          </svg>
-          Câu trích dẫn khác
-        </Button>
-      </div>
+// ─── Sub-component: one background image layer ───────────────────────────────
+function BgLayer({
+  url,
+  opacity,
+  zIndex,
+  crossfadeMs = BG_CROSSFADE_MS,
+}: {
+  url: string;
+  opacity: number;
+  zIndex: number;
+  crossfadeMs?: number;
+}) {
+  if (!url) return null;
+  return (
+    <div
+      className="absolute inset-0"
+      style={{ opacity, zIndex, transition: `opacity ${crossfadeMs}ms ease` }}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={url}
+        alt=""
+        aria-hidden
+        className="w-full h-full object-cover object-top"
+        style={{ filter: "blur(8px)", transform: "scale(1.08)" }}
+      />
+      <div className="absolute inset-0 bg-black/65" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30" />
     </div>
   );
 }

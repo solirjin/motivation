@@ -70,6 +70,53 @@ export const CATEGORY_META: Record<QuoteCategory, CategoryMeta> = {
   },
 };
 
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+export const AUTHOR_IMAGES: Record<string, string> = {
+  "albert-einstein":     `${BASE}/authors/albert-einstein.jpg`,
+  "steve-jobs":          `${BASE}/authors/steve-jobs.jpg`,
+  "nelson-mandela":      `${BASE}/authors/nelson-mandela.jpg`,
+  "ho-chi-minh":         `${BASE}/authors/ho-chi-minh.jpg`,
+  "winston-churchill":   `${BASE}/authors/winston-churchill.jpg`,
+  "marie-curie":         `${BASE}/authors/marie-curie.jpg`,
+  "martin-luther-king":  `${BASE}/authors/martin-luther-king.jpg`,
+  "abraham-lincoln":     `${BASE}/authors/abraham-lincoln.jpg`,
+  "mark-twain":          `${BASE}/authors/mark-twain.jpg`,
+  "thomas-edison":       `${BASE}/authors/thomas-edison.jpg`,
+  "helen-keller":        `${BASE}/authors/helen-keller.jpg`,
+  "maya-angelou":        `${BASE}/authors/maya-angelou.jpg`,
+  "oprah-winfrey":       `${BASE}/authors/oprah-winfrey.jpg`,
+  "paulo-coelho":        `${BASE}/authors/paulo-coelho.jpg`,
+  "anne-frank":          `${BASE}/authors/anne-frank.jpg`,
+  "dalai-lama":          `${BASE}/authors/dalai-lama.jpg`,
+  "theodore-roosevelt":  `${BASE}/authors/theodore-roosevelt.jpg`,
+  confucius:             `${BASE}/authors/confucius.jpg`,
+  socrates:              `${BASE}/authors/socrates.jpg`,
+  "marcus-aurelius":     `${BASE}/authors/marcus-aurelius.jpg`,
+  rumi:                  `${BASE}/authors/rumi.jpg`,
+  "nguyen-du":           `${BASE}/authors/nguyen-du.jpg`,
+  "duc-phat":            `${BASE}/authors/duc-phat.jpg`,
+  "lao-tu":              `${BASE}/authors/lao-tu.jpg`,
+  "ralph-waldo-emerson": `${BASE}/authors/ralph-waldo-emerson.jpg`,
+  "oscar-wilde":         `${BASE}/authors/oscar-wilde.jpg`,
+  "pablo-picasso":       `${BASE}/authors/pablo-picasso.jpg`,
+  "henry-david-thoreau": `${BASE}/authors/henry-david-thoreau.jpg`,
+  "vincent-van-gogh":    `${BASE}/authors/vincent-van-gogh.jpg`,
+  "khalil-gibran":       `${BASE}/authors/khalil-gibran.jpg`,
+  aristotle:             `${BASE}/authors/aristotle.jpg`,
+  seneca:                `${BASE}/authors/seneca.jpg`,
+  epictetus:             `${BASE}/authors/epictetus.jpg`,
+  "albert-camus":        `${BASE}/authors/albert-camus.jpg`,
+  plato:                 `${BASE}/authors/plato.jpg`,
+  "tran-hung-dao":       `${BASE}/authors/tran-hung-dao.jpg`,
+  "nguyen-cong-tru":     `${BASE}/authors/nguyen-cong-tru.jpg`,
+  "richard-branson":     `${BASE}/authors/richard-branson.jpg`,
+};
+
+export function getAuthorImage(authorSlug: string): string | undefined {
+  return AUTHOR_IMAGES[authorSlug];
+}
+
 export function getDailyQuote(): Quote {
   const seed = Math.floor(Date.now() / 86_400_000);
   const index = seed % QUOTES.length;
